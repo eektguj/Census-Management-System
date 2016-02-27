@@ -17,17 +17,17 @@ public class Main {
 
         // Sample Usage of Plot
 
-        ArrayList<Double> xValues = new ArrayList<>();
-        xValues.add((double) 2000);
-        xValues.add((double) 2050);
-        xValues.add((double) 2100);
-
-        ArrayList<Double> yValues = new ArrayList<>();
-        yValues.add((double) 700.8);
-        yValues.add((double) 800);
-        yValues.add((double) 780);
-
-        Plotter.plot("Title", "Year", "Population", xValues, yValues, "./barchart.pdf" );
+//        ArrayList<Double> xValues = new ArrayList<>();
+//        xValues.add((double) 2000);
+//        xValues.add((double) 2050);
+//        xValues.add((double) 2100);
+//
+//        ArrayList<Double> yValues = new ArrayList<>();
+//        yValues.add((double) 700.8);
+//        yValues.add((double) 800);
+//        yValues.add((double) 780);
+//
+//        Plotter.plot("Title", "Year", "Population", xValues, yValues, "./barchart.pdf" );
 
         new FrmFather().setVisible(true);
         
