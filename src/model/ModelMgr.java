@@ -40,6 +40,8 @@ public class ModelMgr {
     }
 
     private void createDataFile() {
+        //TODO Saeed
+        saveDataFile();
     }
 
     private void loadDataFile() {

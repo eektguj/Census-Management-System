@@ -13,7 +13,9 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
+        
         new FrmFather().setVisible(true);
+        
         Scanner sc = new Scanner(new File("input.txt"));
 
         ArrayList<String> countryName = new ArrayList<>();
