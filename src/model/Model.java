@@ -12,5 +12,5 @@ import java.util.ArrayList;
  * @author amir
  */
 public class Model {
-    public ArrayList<Country> countryList = new ArrayList<>();
+    public ArrayList<Country> countryList = new ArrayList<Country>();
 }

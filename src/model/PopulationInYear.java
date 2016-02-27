@@ -5,16 +5,12 @@
  */
 package model;
 
-import java.util.ArrayList;
 
 /**
  *
  * @author amir
  */
 public class PopulationInYear {
-    int Male;
-    int Female;
-    int startYear;
-    int endYear;
-    ArrayList<PredictPopulation> predictedList = new ArrayList<>();
+    public int populationNumber;
+    public int estimateYear;
 }

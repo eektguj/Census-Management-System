@@ -12,4 +12,5 @@ package model;
 public class PredictPopulation {
     public String methodName;
     public int populationNumber;
+    public int predictYear;
 }

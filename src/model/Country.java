@@ -12,6 +12,14 @@ import java.util.ArrayList;
  * @author amir
  */
 public class Country {
+	public int code;
     public String countryName;
-    public ArrayList<PopulationInYear> pupulationListForYears = new ArrayList<>();
+    public ArrayList<GrowthRate> growths = new ArrayList<GrowthRate>();
+    public ArrayList<ArrayList<PredictPopulation>> predicts = 
+    		new ArrayList<ArrayList<PredictPopulation>>();
+    
+    public Country(){
+    	predicts.add(new ArrayList<PredictPopulation>());
+    	predicts.add(new ArrayList<PredictPopulation>());
+    }
 }
