@@ -1,4 +1,5 @@
 import forms.FrmFather;
+import helpers.Plotter;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -13,7 +14,21 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
-        
+
+        // Sample Usage of Plot
+
+        ArrayList<Double> xValues = new ArrayList<>();
+        xValues.add((double) 2000);
+        xValues.add((double) 2050);
+        xValues.add((double) 2100);
+
+        ArrayList<Double> yValues = new ArrayList<>();
+        yValues.add((double) 700.8);
+        yValues.add((double) 800);
+        yValues.add((double) 780);
+
+        Plotter.plot("Title", "Year", "Population", xValues, yValues, "./barchart.pdf" );
+
         new FrmFather().setVisible(true);
         
         Scanner sc = new Scanner(new File("input.txt"));
