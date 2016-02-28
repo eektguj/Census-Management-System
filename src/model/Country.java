@@ -22,4 +22,12 @@ public class Country {
     	predicts.add(new ArrayList<PredictPopulation>());
     	predicts.add(new ArrayList<PredictPopulation>());
     }
+    
+    public PredictPopulation getPredictByYear(String methodName, int year, int type){
+        for (PredictPopulation predict: predicts.get(type)){
+            if (predict.methodName.equals(methodName) && predict.predictYear == year)
+                return predict;
+        }
+        return null;
+    }
 }

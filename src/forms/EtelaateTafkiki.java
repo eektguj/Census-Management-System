@@ -7,6 +7,7 @@ package forms;
 
 import model.Country;
 import model.ModelMgr;
+import model.PredictPopulation;
 
 /**
  *
@@ -245,6 +246,15 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
 
     private void button_edit_doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_edit_doneActionPerformed
         // TODO add your handling code here:
+        Country country = ModelMgr.getInstance().getCountry(combo_information_country.getSelectedItem().toString());
+        String yy = combo_information_year.getSelectedItem().toString();
+        int year = Integer.parseInt(yy);
+        PredictPopulation menPopulation = country.getPredictByYear(ModelMgr.ESTIMATES, year, 0);
+        PredictPopulation womenPopulation = country.getPredictByYear(ModelMgr.ESTIMATES, year, 1);
+        menPopulation.populationNumber = Integer.parseInt(txt_information_men.getText());
+        womenPopulation.populationNumber = Integer.parseInt(txt_information_women.getText());
+        ChangeViewData();
+        ModelMgr.getInstance().saveDataFile();
         disableEditArea();
     }//GEN-LAST:event_button_edit_doneActionPerformed
 
@@ -278,9 +288,14 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
         enableEditButton();
         
         Country country = ModelMgr.getInstance().getCountry(combo_information_country.getSelectedItem().toString());
-        int index = -1;
-        for(int i=0;i<country.growths.size();i++)
-            country.growths.get(i);
+        String yy = combo_information_year.getSelectedItem().toString();
+        int year = Integer.parseInt(yy);
+        PredictPopulation menPopulation = country.getPredictByYear(ModelMgr.ESTIMATES, year, 0);
+        PredictPopulation womenPopulation = country.getPredictByYear(ModelMgr.ESTIMATES, year, 1);
+        lbl_information_men.setText(menPopulation.populationNumber + "");
+        lbl_information_women.setText(womenPopulation.populationNumber + "");
+        lbl_information_all.setText((menPopulation.populationNumber + womenPopulation.populationNumber) + "");
+        
     }
     
     private void disableEditArea(){
@@ -290,6 +305,8 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
         txt_information_women.setEnabled(false);
         pane_information_edit.setEnabled(false);
         button_edit_done.setEnabled(false);
+        txt_information_women.setText("");
+        txt_information_men.setText("");
     }
     
     private void enableEditArea(){
@@ -299,6 +316,8 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
         txt_information_women.setEnabled(true);
         pane_information_edit.setEnabled(true);
         button_edit_done.setEnabled(true);
+        txt_information_women.setText(lbl_information_women.getText());
+        txt_information_men.setText(lbl_information_men.getText());
     }
     
     private void disableEditButton(){
