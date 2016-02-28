@@ -15,8 +15,12 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -30,9 +34,15 @@ public class Plotter {
                 dataSet.setValue(yValues.get(i), "Population", xValues.get(i));
         }
 
-
         JFreeChart chart = ChartFactory.createBarChart(title, xAxisName, yAxisName,
                 dataSet, PlotOrientation.VERTICAL, false, true, false);
+
+        Font font = new Font("Dialog", Font.PLAIN, 3);
+
+        CategoryPlot plot = chart.getCategoryPlot();
+        CategoryAxis axis = plot.getDomainAxis();
+        axis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);
+        axis.setTickLabelFont(font);
 
         writeChartToPDF(chart, 500, 400, outputPath);
 
