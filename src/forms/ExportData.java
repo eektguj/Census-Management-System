@@ -5,12 +5,15 @@
  */
 package forms;
 
+import helpers.PdfFileChooser;
 import helpers.Plotter;
 import java.awt.TrayIcon;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
 import model.Country;
 import model.GrowthRate;
 import model.ModelMgr;
@@ -36,6 +39,9 @@ public class ExportData extends javax.swing.JPanel {
         combo_export_forecast_type.setModel(new DefaultComboBoxModel(comboModel.toArray()));
         combo_export_forecast_country.setModel(ModelMgr.getInstance().getCuntriesComboModel());
         combo_export_population_country.setModel(ModelMgr.getInstance().getCuntriesComboModel());
+        combo_export_forecast_type.setSelectedIndex(-1);
+        combo_export_forecast_country.setSelectedIndex(-1);
+        combo_export_population_country.setSelectedIndex(-1);
     }
 
     /**
@@ -240,8 +246,24 @@ public class ExportData extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        JFileChooser chooser = new PdfFileChooser(".","pdf");
+        FileFilter ff = new FileFilter() {
+ 
+            public String getDescription() {
+                return "PDF Documents (*.pdf)";
+            }
+ 
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                } else {
+                    return f.getName().toLowerCase().endsWith(".pdf");
+                }
+            }
+        };
+        chooser.addChoosableFileFilter(ff);
+        chooser.setFileFilter(ff);
+        
         int option = chooser.showSaveDialog(this);
         if (option == JFileChooser.APPROVE_OPTION) {
             txt_export_outputAddress.setText(chooser.getSelectedFile().getAbsolutePath());

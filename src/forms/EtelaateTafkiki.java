@@ -5,9 +5,6 @@
  */
 package forms;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.DefaultComboBoxModel;
 import model.Country;
 import model.ModelMgr;
 
@@ -22,10 +19,12 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
      */
     public EtelaateTafkiki() {
         initComponents();
-        jButton1.setVisible(false);
-        pane_information_edit.setVisible(false);
+        disableEditArea();
+        disableEditButton();
         combo_information_country.setModel(ModelMgr.getInstance().getCuntriesComboModel());        
         combo_information_year.setModel(ModelMgr.getInstance().getYearsComboModel());
+        combo_information_year.setSelectedIndex(-1);
+        combo_information_country.setSelectedIndex(-1);
     }
 
     /**
@@ -42,18 +41,18 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         combo_information_year = new javax.swing.JComboBox();
         pane_information_edit = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        lbl_edit_men = new javax.swing.JLabel();
+        lbl_edit_women = new javax.swing.JLabel();
         txt_information_men = new javax.swing.JTextField();
         txt_information_women = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        button_edit_done = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         lbl_information_men = new javax.swing.JLabel();
         lbl_information_women = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lbl_information_all = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        button_information_startEdit = new javax.swing.JButton();
 
         combo_information_country.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
         combo_information_country.setName("combo_country"); // NOI18N
@@ -89,14 +88,14 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
         pane_information_edit.setToolTipText("Edit");
         pane_information_edit.setName("panel_edit"); // NOI18N
 
-        jLabel9.setText("Men:");
+        lbl_edit_men.setText("Men:");
 
-        jLabel11.setText("Women:");
+        lbl_edit_women.setText("Women:");
 
-        jButton2.setText("Done");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        button_edit_done.setText("Done");
+        button_edit_done.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                button_edit_doneActionPerformed(evt);
             }
         });
 
@@ -106,15 +105,15 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
             pane_information_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pane_information_editLayout.createSequentialGroup()
                 .addGap(196, 196, 196)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(button_edit_done, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pane_information_editLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel9)
+                .addComponent(lbl_edit_men)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_information_men, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel11)
+                .addComponent(lbl_edit_women)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_information_women, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
@@ -124,12 +123,12 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
             .addGroup(pane_information_editLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(pane_information_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
+                    .addComponent(lbl_edit_men)
                     .addComponent(txt_information_men, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_information_women, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbl_edit_women, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(button_edit_done)
                 .addContainerGap())
         );
 
@@ -148,10 +147,10 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
         lbl_information_all.setText("                                   ");
         lbl_information_all.setName("label_allPopulation"); // NOI18N
 
-        jButton1.setText("Edit Data!");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        button_information_startEdit.setText("Edit Data!");
+        button_information_startEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                button_information_startEditActionPerformed(evt);
             }
         });
 
@@ -177,7 +176,7 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
                             .addComponent(lbl_information_men, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(120, 120, 120)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button_information_startEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -186,7 +185,7 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(combo_information_year, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lbl_information_women, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 31, Short.MAX_VALUE)))
+                        .addGap(31, 31, 31)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -209,8 +208,8 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(lbl_information_all)
-                    .addComponent(jButton1))
-                .addGap(67, 67, 67)
+                    .addComponent(button_information_startEdit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(pane_information_edit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -237,31 +236,31 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
         ChangeViewData();
     }//GEN-LAST:event_combo_information_yearActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void button_information_startEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_information_startEditActionPerformed
         // TODO add your handling code here:
         if(combo_information_country.getSelectedIndex() == -1 || combo_information_year.getSelectedIndex() == -1)
             return;
-        pane_information_edit.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        enableEditArea();
+    }//GEN-LAST:event_button_information_startEditActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void button_edit_doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_edit_doneActionPerformed
         // TODO add your handling code here:
-        pane_information_edit.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        disableEditArea();
+    }//GEN-LAST:event_button_edit_doneActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton button_edit_done;
+    private javax.swing.JButton button_information_startEdit;
     private javax.swing.JComboBox combo_information_country;
     private javax.swing.JComboBox combo_information_year;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lbl_edit_men;
+    private javax.swing.JLabel lbl_edit_women;
     private javax.swing.JLabel lbl_information_all;
     private javax.swing.JLabel lbl_information_men;
     private javax.swing.JLabel lbl_information_women;
@@ -271,16 +270,42 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void ChangeViewData() {
+        disableEditArea();
+        disableEditButton();
         if(combo_information_country.getSelectedIndex() == -1 || combo_information_year.getSelectedIndex() == -1){
-            jButton1.setVisible(false);
             return;
-            
         }
-        jButton1.setVisible(true);
+        enableEditButton();
         
         Country country = ModelMgr.getInstance().getCountry(combo_information_country.getSelectedItem().toString());
         int index = -1;
         for(int i=0;i<country.growths.size();i++)
             country.growths.get(i);
+    }
+    
+    private void disableEditArea(){
+        lbl_edit_men.setEnabled(false);
+        lbl_edit_women.setEnabled(false);
+        txt_information_men.setEnabled(false);
+        txt_information_women.setEnabled(false);
+        pane_information_edit.setEnabled(false);
+        button_edit_done.setEnabled(false);
+    }
+    
+    private void enableEditArea(){
+        lbl_edit_men.setEnabled(true);
+        lbl_edit_women.setEnabled(true);
+        txt_information_men.setEnabled(true);
+        txt_information_women.setEnabled(true);
+        pane_information_edit.setEnabled(true);
+        button_edit_done.setEnabled(true);
+    }
+    
+    private void disableEditButton(){
+        button_information_startEdit.setEnabled(false);
+    }
+    
+    private void enableEditButton(){
+        button_information_startEdit.setEnabled(true);
     }
 }

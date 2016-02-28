@@ -5,16 +5,12 @@
  */
 package forms;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Country;
 import model.ModelMgr;
-import model.PredictPopulation;
 
 /**
  *
@@ -29,6 +25,7 @@ public class CountriesTable extends javax.swing.JPanel {
         initComponents();
         List<Country> countryList = ModelMgr.getInstance().getCountryList();
         combo_sort_year.setModel(ModelMgr.getInstance().getYearsComboModel());
+        combo_sort_year.setSelectedIndex(-1);
     }
 
     /**
