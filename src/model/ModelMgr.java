@@ -207,11 +207,21 @@ public class ModelMgr {
             DefaultComboBoxModel dcm = new DefaultComboBoxModel(cuntryNameList.toArray());
             return dcm;
         }
-        public DefaultComboBoxModel getYearsComboModel() {
+        public DefaultComboBoxModel getYearsComboModelForGrowth() {
             List<Country> countryList= ModelMgr.getInstance().getCountryList();
             ArrayList<String> comboModel = new ArrayList<>();
             for(int i=0;i<countryList.get(0).growths.size();i++){
                 comboModel.add(String.valueOf(countryList.get(0).growths.get(i).startYear));
+            }
+            DefaultComboBoxModel dcm = new DefaultComboBoxModel(comboModel.toArray());
+            return dcm;
+        }
+        
+        public DefaultComboBoxModel getYearsComboModelForPupulation() {
+            List<Country> countryList= ModelMgr.getInstance().getCountryList();
+            ArrayList<String> comboModel = new ArrayList<>();
+            for(int i=1950;i<=2015;i++){
+                comboModel.add(i + "");
             }
             DefaultComboBoxModel dcm = new DefaultComboBoxModel(comboModel.toArray());
             return dcm;

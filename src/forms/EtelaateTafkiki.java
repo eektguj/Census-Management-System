@@ -5,6 +5,8 @@
  */
 package forms;
 
+import java.io.File;
+import javax.swing.JOptionPane;
 import model.Country;
 import model.ModelMgr;
 import model.PredictPopulation;
@@ -23,7 +25,7 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
         disableEditArea();
         disableEditButton();
         combo_information_country.setModel(ModelMgr.getInstance().getCuntriesComboModel());        
-        combo_information_year.setModel(ModelMgr.getInstance().getYearsComboModel());
+        combo_information_year.setModel(ModelMgr.getInstance().getYearsComboModelForPupulation());
         combo_information_year.setSelectedIndex(-1);
         combo_information_country.setSelectedIndex(-1);
     }
