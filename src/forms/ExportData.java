@@ -374,6 +374,11 @@ public class ExportData extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void sortByDate(List<PredictPopulation> PPList) {
-        Collections.sort(PPList, (PredictPopulation o1, PredictPopulation o2) -> Integer.compare(o1.predictYear,o2.predictYear));
+        Collections.sort(PPList, new Comparator<PredictPopulation>() {
+            @Override
+            public int compare(PredictPopulation o1, PredictPopulation o2) {
+                return Integer.compare(o1.predictYear,o2.predictYear);
+            }
+        });
     }
 }
