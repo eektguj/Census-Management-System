@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
-import java.awt.image.DirectColorModel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import javax.swing.ComboBoxModel;
+import java.util.Set;
+import java.util.TreeSet;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -30,6 +30,7 @@ public class ModelMgr {
 	public static int ACC_COUNTRY_CODE_START = 900;
 	private static String dataFileAddress = "data.json";
 	private static ModelMgr _instance;
+        public static String ESTIMATES = "Estimates";
 	private Model model = new Model();
 
 	public static ModelMgr getInstance(){
@@ -74,7 +75,7 @@ public class ModelMgr {
 		final int YEAR_START_COL = 5;
 		final int YEAR_START_VAL = 1950;
 		final int YEAR_START_VAL_PREDICT = 2015;
-		final String ESTIMATES = "Estimates";
+		
 		File dir = new File(directory);
 		for (File file: dir.listFiles()){
 			System.err.println(file.getAbsolutePath());
@@ -223,8 +224,16 @@ public class ModelMgr {
 		}
 		return null;
 	}
-
-    
-
+        
+        public List<String> getMethodList (){
+            if (model.countryList.isEmpty())
+                return null;
+            Country country = model.countryList.get(0);
+            Set<String> temp = new TreeSet<>();
+            for (PredictPopulation predict: country.predicts.get(0))
+                temp.add(predict.methodName);
+            List<String> ret = new ArrayList<>(temp);
+            return ret;
+        }
 
 }
