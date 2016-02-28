@@ -156,7 +156,7 @@ public class ExportData extends javax.swing.JPanel {
 
         lbl_export_population_country.setText("Country:");
 
-        combo_export_population_type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Men" , "Woemen" , "All" }));
+        combo_export_population_type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Men" , "Women" , "All" }));
         combo_export_population_type.setName("combo_country"); // NOI18N
 
         lbl_export_population_type.setText("Type:");

@@ -272,7 +272,7 @@
         <Component class="javax.swing.JComboBox" name="combo_export_population_type">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Men&quot; , &quot;Woemen&quot; , &quot;All&quot; })" type="code"/>
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Men&quot; , &quot;Women&quot; , &quot;All&quot; })" type="code"/>
             </Property>
             <Property name="name" type="java.lang.String" value="combo_country" noResource="true"/>
           </Properties>
