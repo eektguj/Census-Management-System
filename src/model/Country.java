@@ -45,7 +45,8 @@ public class Country {
     	if (type != 2){
     		List<PredictPopulation> ret = new ArrayList<PredictPopulation>();
     		for (PredictPopulation predict: predicts.get(type))
-    			ret.add(predict);
+    			if (predict.methodName.equals(methodName))
+    				ret.add(predict);
     		return ret;
     	}else{
     		List<PredictPopulation> males = getPredictForMenWomenOrAll(methodName, 0);
