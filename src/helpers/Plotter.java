@@ -21,13 +21,13 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class Plotter {
-    public static boolean plot(String title, String xAxisName, String yAxisName, ArrayList<Double> xValues, ArrayList<Double> yValues, String outputPath){
+    public static boolean plot(String title, String xAxisName, String yAxisName, ArrayList<String> xValues, ArrayList<Double> yValues, String outputPath){
 
         DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
 
         for ( int i = 0; i < xValues.size(); i++ )
         {
-            dataSet.setValue(yValues.get(i), "Population", xValues.get(i).toString());
+                dataSet.setValue(yValues.get(i), "Population", xValues.get(i));
         }
 
 

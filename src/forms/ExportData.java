@@ -318,12 +318,12 @@ public class ExportData extends javax.swing.JPanel {
             System.err.println(country.countryName);
             if(country == null)
                 return;
-            ArrayList<Double> xList = new ArrayList<>();
+            ArrayList<String> xList = new ArrayList<>();
             ArrayList<Double> yList = new ArrayList<>();
             List<PredictPopulation> PPList = country.getPredictForMenWomenOrAll(ModelMgr.ESTIMATES, combo_export_population_type.getSelectedIndex());
             sortByDate(PPList);
             for(PredictPopulation pp : PPList){
-                xList.add((double)pp.predictYear);
+                xList.add(pp.predictYear+"");
                 yList.add((double)pp.populationNumber);
             }
             String title = "Population of " + country.countryName + " for " + combo_export_population_type.getSelectedItem();
@@ -338,12 +338,12 @@ public class ExportData extends javax.swing.JPanel {
             Country country = ModelMgr.getInstance().getCountry(combo_export_forecast_country.getSelectedItem().toString());
             if(country == null)
                 return;
-            ArrayList<Double> xList = new ArrayList<>();
+            ArrayList<String> xList = new ArrayList<>();
             ArrayList<Double> yList = new ArrayList<>();
             List<PredictPopulation> PPList = country.getPredictForMenWomenOrAll(combo_export_forecast_type.getSelectedItem().toString(), 2);
             sortByDate(PPList);
             for(PredictPopulation pp : PPList){
-                xList.add((double)pp.predictYear);
+                xList.add(pp.predictYear+"");
                 yList.add((double)pp.populationNumber);
             }
             String title = "Population of " + country.countryName + " with method " + combo_export_forecast_type.getSelectedItem();
