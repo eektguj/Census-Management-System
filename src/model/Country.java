@@ -6,6 +6,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -29,5 +30,18 @@ public class Country {
                 return predict;
         }
         return null;
+    }
+
+    public List<PredictPopulation> getPredictByName(String methodName, int type) {
+        List<PredictPopulation> result = new ArrayList<>();
+        for (PredictPopulation predict: predicts.get(type)){
+            if (predict.methodName.equals(methodName))
+                result.add(predict);
+        }
+        return result;
+    }
+    
+    public List<PredictPopulation> getPredictForAllMenAndWomen(String methodName, int type){
+        return new ArrayList<>();
     }
 }
