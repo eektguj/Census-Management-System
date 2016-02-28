@@ -41,7 +41,7 @@ public class Country {
         return result;
     }
     
-    public List<PredictPopulation> getPredictForAllMenAndWomen(String methodName, int type){
+    public List<PredictPopulation> getPredictForMenWomenOrAll(String methodName, int type){
         return new ArrayList<>();
     }
 }

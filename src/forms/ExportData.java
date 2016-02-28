@@ -320,7 +320,7 @@ public class ExportData extends javax.swing.JPanel {
                 return;
             ArrayList<Double> xList = new ArrayList<>();
             ArrayList<Double> yList = new ArrayList<>();
-            List<PredictPopulation> PPList = country.getPredictForAllMenAndWomen(ModelMgr.ESTIMATES, combo_export_population_type.getSelectedIndex());
+            List<PredictPopulation> PPList = country.getPredictForMenWomenOrAll(ModelMgr.ESTIMATES, combo_export_population_type.getSelectedIndex());
             sortByDate(PPList);
             for(PredictPopulation pp : PPList){
                 xList.add((double)pp.predictYear);
@@ -340,7 +340,7 @@ public class ExportData extends javax.swing.JPanel {
                 return;
             ArrayList<Double> xList = new ArrayList<>();
             ArrayList<Double> yList = new ArrayList<>();
-            List<PredictPopulation> PPList = country.getPredictForAllMenAndWomen(combo_export_forecast_type.getSelectedItem().toString(), 2);
+            List<PredictPopulation> PPList = country.getPredictForMenWomenOrAll(combo_export_forecast_type.getSelectedItem().toString(), 2);
             sortByDate(PPList);
             for(PredictPopulation pp : PPList){
                 xList.add((double)pp.predictYear);
