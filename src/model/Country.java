@@ -42,6 +42,25 @@ public class Country {
     }
     
     public List<PredictPopulation> getPredictForMenWomenOrAll(String methodName, int type){
-        return new ArrayList<>();
+    	if (type != 2){
+    		List<PredictPopulation> ret = new ArrayList<PredictPopulation>();
+    		for (PredictPopulation predict: predicts.get(type))
+    			ret.add(predict);
+    		return ret;
+    	}else{
+    		List<PredictPopulation> males = getPredictForMenWomenOrAll(methodName, 0);
+    		List<PredictPopulation> females = getPredictForMenWomenOrAll(methodName, 1);
+    		List<PredictPopulation> ret = new ArrayList<PredictPopulation>();
+    		for (PredictPopulation male: males)
+    			ret.add(male);
+    		for (PredictPopulation female: females){
+    			for (PredictPopulation p: ret)
+    				if (p.predictYear == female.predictYear){
+    					p.populationNumber+= female.populationNumber;
+    					break;
+    				}
+    		}
+    		return ret;
+    	}        
     }
 }
