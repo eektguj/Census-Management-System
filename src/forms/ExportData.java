@@ -9,6 +9,7 @@ import helpers.PdfFileChooser;
 import helpers.Plotter;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -31,11 +32,9 @@ public class ExportData extends javax.swing.JPanel {
         initComponents();
         radio_export_population.setSelected(true);
         radio_export_populationActionPerformed(null);
-        ArrayList<String> comboModel = new ArrayList<>();
-        for(PredictPopulation pr: ModelMgr.getInstance().getCountryList().get(0).predicts.get(0)){
-            comboModel.add(pr.methodName);
-        }
-        combo_export_forecast_type.setModel(new DefaultComboBoxModel(comboModel.toArray()));
+        List<String> typeList = ModelMgr.getInstance().getMethodList();
+        typeList.remove(typeList.indexOf(ModelMgr.ESTIMATES));
+        combo_export_forecast_type.setModel(new DefaultComboBoxModel(typeList.toArray()));
         combo_export_forecast_country.setModel(ModelMgr.getInstance().getCuntriesComboModel());
         combo_export_population_country.setModel(ModelMgr.getInstance().getCuntriesComboModel());
         combo_export_forecast_type.setSelectedIndex(-1);
