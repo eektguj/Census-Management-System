@@ -5,7 +5,16 @@
  */
 package forms;
 
+import helpers.Plotter;
+import java.awt.TrayIcon;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import model.Country;
+import model.GrowthRate;
+import model.ModelMgr;
+import model.PredictPopulation;
 
 /**
  *
@@ -20,6 +29,13 @@ public class ExportData extends javax.swing.JPanel {
         initComponents();
         radio_export_population.setSelected(true);
         radio_export_populationActionPerformed(null);
+        ArrayList<String> comboModel = new ArrayList<>();
+        for(PredictPopulation pr: ModelMgr.getInstance().getCountryList().get(0).predicts.get(0)){
+            comboModel.add(pr.methodName);
+        }
+        combo_export_forecast_type.setModel(new DefaultComboBoxModel(comboModel.toArray()));
+        combo_export_forecast_country.setModel(ModelMgr.getInstance().getCuntriesComboModel());
+        combo_export_population_country.setModel(ModelMgr.getInstance().getCuntriesComboModel());
     }
 
     /**
@@ -265,6 +281,44 @@ public class ExportData extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(txt_export_outputAddress.getText() == null)
+            return;
+        String outputPath = txt_export_outputAddress.getText();
+        if(radio_export_population.isSelected()){
+            if(combo_export_population_country.getSelectedIndex() == -1 || combo_export_population_type.getSelectedIndex() == -1){
+                JOptionPane.showMessageDialog(this, "Fill all data please", "Error", JOptionPane.ERROR);
+                Country country = ModelMgr.getInstance().getCountry(combo_export_population_country.getSelectedItem().toString());
+                if(country == null)
+                    return;
+                ArrayList<Double> xList = new ArrayList<>();
+                ArrayList<Double> yList = new ArrayList<>();
+                for(GrowthRate gr : country.growths){
+                    xList.add((double)gr.startYear);
+                    yList.add(gr.growth);
+                }
+                String title = "Growth rate of " + country.countryName + ".";
+                Plotter.plot(title, "Year", "Growth rate", xList, yList, outputPath);
+                JOptionPane.showMessageDialog(this, "Done!", "Ok", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        else{
+            if(combo_export_forecast_country.getSelectedIndex() == -1 || combo_export_forecast_type.getSelectedIndex() == -1){
+                JOptionPane.showMessageDialog(this, "Fill all data please", "Error", JOptionPane.ERROR);
+                Country country = ModelMgr.getInstance().getCountry(combo_export_forecast_country.getSelectedItem().toString());
+                if(country == null)
+                    return;
+                ArrayList<Double> xList = new ArrayList<>();
+                ArrayList<Double> yList = new ArrayList<>();
+                for(PredictPopulation pr : country.predicts.get(0)){
+                    if(pr.methodName.equals(combo_export_forecast_type.getSelectedItem().toString())){
+                        
+                    }
+                }
+                String title = "Growth rate of " + country.countryName + ".";
+                Plotter.plot(title, "Year", "Growth rate", xList, yList, outputPath);
+                JOptionPane.showMessageDialog(this, "Done!", "Ok", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

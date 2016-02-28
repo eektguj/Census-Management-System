@@ -14,6 +14,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
+import java.awt.image.DirectColorModel;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -28,7 +34,7 @@ public class ModelMgr {
 
 	public static ModelMgr getInstance(){
 		if(_instance == null)
-			_instance = new ModelMgr();
+                    _instance = new ModelMgr();
 		return _instance;
 	}
 	private ModelMgr(){
@@ -180,6 +186,35 @@ public class ModelMgr {
 	public List<Country> getCountryList(){
 		return model.countryList;
 	}
+        
+        public List<Country> getCountryListSortedByName(){
+            Collections.sort(model.countryList, new Comparator<Country>() {
+                @Override
+                public int compare(Country o1, Country o2) {
+                    return o1.countryName.compareTo(o2.countryName);
+                }
+            });
+            return model.countryList;
+        }
+        
+        public DefaultComboBoxModel getCuntriesComboModel(){
+            List<Country> countryList= ModelMgr.getInstance().getCountryListSortedByName();
+            List<String> cuntryNameList = new ArrayList<>();
+            for(Country country: countryList){
+                cuntryNameList.add(country.countryName);
+            }
+            DefaultComboBoxModel dcm = new DefaultComboBoxModel(cuntryNameList.toArray());
+            return dcm;
+        }
+        public DefaultComboBoxModel getYearsComboModel() {
+            List<Country> countryList= ModelMgr.getInstance().getCountryList();
+            ArrayList<String> comboModel = new ArrayList<>();
+            for(int i=0;i<countryList.get(0).growths.size();i++){
+                comboModel.add(String.valueOf(countryList.get(0).growths.get(i).startYear));
+            }
+            DefaultComboBoxModel dcm = new DefaultComboBoxModel(comboModel.toArray());
+            return dcm;
+        }
 
 	public Country getCountry(String countryName){
 		for (Country country : model.countryList) {
@@ -188,6 +223,8 @@ public class ModelMgr {
 		}
 		return null;
 	}
+
+    
 
 
 }

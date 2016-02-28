@@ -5,6 +5,17 @@
  */
 package forms;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Country;
+import model.ModelMgr;
+import model.PredictPopulation;
+
 /**
  *
  * @author amir
@@ -16,6 +27,8 @@ public class CountriesTable extends javax.swing.JPanel {
      */
     public CountriesTable() {
         initComponents();
+        List<Country> countryList = ModelMgr.getInstance().getCountryList();
+        combo_sort_year.setModel(ModelMgr.getInstance().getYearsComboModel());
     }
 
     /**
@@ -28,14 +41,14 @@ public class CountriesTable extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_sort_result = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         combo_sort_year = new javax.swing.JComboBox();
 
         setMaximumSize(new java.awt.Dimension(576, 360));
         setPreferredSize(new java.awt.Dimension(576, 360));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_sort_result.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -46,7 +59,7 @@ public class CountriesTable extends javax.swing.JPanel {
                 "Country" , "Pupulation"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_sort_result);
 
         jLabel1.setText("Choose Year:");
 
@@ -54,6 +67,11 @@ public class CountriesTable extends javax.swing.JPanel {
         combo_sort_year.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_sort_yearActionPerformed(evt);
+            }
+        });
+        combo_sort_year.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
+                combo_sort_yearVetoableChange(evt);
             }
         });
 
@@ -88,13 +106,53 @@ public class CountriesTable extends javax.swing.JPanel {
 
     private void combo_sort_yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_sort_yearActionPerformed
         // TODO add your handling code here:
+        if(combo_sort_year.getSelectedIndex() == -1){
+            return;
+        }
+        
+        int year = Integer.parseInt(combo_sort_year.getSelectedItem().toString());
+        int index = 0;
+        List<Country> countryList = ModelMgr.getInstance().getCountryList();
+        System.out.println(countryList.size());
+        for(int i=0;i<countryList.get(0).growths.size();i++){
+            if(countryList.get(0).growths.get(i).startYear == year){
+                index = i;
+                break;
+            }
+        }
+        final int choose = index;
+        Collections.sort(countryList, new Comparator<Country>() {
+                @Override
+                public int compare(Country o1, Country o2) {
+                    if(o1.growths.size() <= choose && o2.growths.size() <= choose)
+                        return 0;
+                    if(o1.growths.size() <= choose)
+                        return -1;
+                    if(o2.growths.size() <= choose)
+                        return 1;
+                    return Double.compare(o2.growths.get(choose).growth, o1.growths.get(choose).growth);
+                }
+            });
+        DefaultTableModel model = (DefaultTableModel)table_sort_result.getModel();
+        model.setRowCount(0);
+        for(Country country: countryList){
+            if(country.growths.size()>choose)
+                model.addRow(new Object[]{country.countryName, country.growths.get(choose).growth});
+        }
+
     }//GEN-LAST:event_combo_sort_yearActionPerformed
+
+    
+    private void combo_sort_yearVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_combo_sort_yearVetoableChange
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_combo_sort_yearVetoableChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox combo_sort_year;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table_sort_result;
     // End of variables declaration//GEN-END:variables
 }
