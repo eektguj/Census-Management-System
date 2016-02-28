@@ -104,10 +104,6 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
         pane_information_editLayout.setHorizontalGroup(
             pane_information_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pane_information_editLayout.createSequentialGroup()
-                .addGap(196, 196, 196)
-                .addComponent(button_edit_done, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pane_information_editLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lbl_edit_men)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -117,6 +113,10 @@ public class EtelaateTafkiki extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_information_women, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
+            .addGroup(pane_information_editLayout.createSequentialGroup()
+                .addGap(215, 215, 215)
+                .addComponent(button_edit_done, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pane_information_editLayout.setVerticalGroup(
             pane_information_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

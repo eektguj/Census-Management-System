@@ -7,7 +7,6 @@ package forms;
 
 import helpers.PdfFileChooser;
 import helpers.Plotter;
-import java.awt.TrayIcon;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -218,7 +217,7 @@ public class ExportData extends javax.swing.JPanel {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(223, 223, 223)
+                .addGap(219, 219, 219)
                 .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -353,7 +352,6 @@ public class ExportData extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbl_export_forecast_country;
     private javax.swing.JLabel lbl_export_forecast_type;
     private javax.swing.JLabel lbl_export_population_country;
