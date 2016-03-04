@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
+import forms.CountriesTable;
+import forms.EtelaateTafkiki;
+import forms.ExportData;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -32,6 +35,9 @@ public class ModelMgr {
 	private static ModelMgr _instance;
         public static String ESTIMATES = "Estimates";
 	private Model model = new Model();
+        public CountriesTable countriesTable;
+        public ExportData exportData;
+        public EtelaateTafkiki etelaateTafkiki;
 
 	public static ModelMgr getInstance(){
 		if(_instance == null)

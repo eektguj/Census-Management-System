@@ -33,6 +33,10 @@ public class ExportData extends javax.swing.JPanel {
      */
     public ExportData() {
         initComponents();
+        ModelMgr.getInstance().exportData = this;
+        init();
+    }
+    public void init(){
         radio_export_population.setSelected(true);
         radio_export_populationActionPerformed(null);
         List<String> typeList = ModelMgr.getInstance().getMethodList();

@@ -23,6 +23,11 @@ public class CountriesTable extends javax.swing.JPanel {
      */
     public CountriesTable() {
         initComponents();
+        ModelMgr.getInstance().countriesTable = this;
+        init();
+    }
+    
+    public void init(){
         List<Country> countryList = ModelMgr.getInstance().getCountryList();
         combo_sort_year.setModel(ModelMgr.getInstance().getYearsComboModelForGrowth());
         combo_sort_year.setSelectedIndex(-1);

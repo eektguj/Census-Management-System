@@ -96,7 +96,6 @@
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lbl_information_all" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="15" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -104,9 +103,9 @@
                           <Component id="button_information_startEditCountry" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="button_information_startEdit" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="pane_information_edit" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="panel_editCountry" min="-2" max="-2" attributes="0"/>
@@ -190,20 +189,22 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbl_edit_men" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_information_men" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="txt_information_women" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lbl_edit_women" alignment="3" max="32767" attributes="0"/>
                       </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lbl_edit_men" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_information_men" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
+                          <Component id="button_edit_done" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="49" max="32767" attributes="0"/>
-                  <Component id="button_edit_done" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
