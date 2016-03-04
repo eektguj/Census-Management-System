@@ -249,6 +249,7 @@ public class ModelMgr {
             for (PredictPopulation predict: country.predicts.get(0))
                 temp.add(predict.methodName);
             List<String> ret = new ArrayList<>(temp);
+            ret.add(Country.MY_FORECAST);
             return ret;
         }
 
